@@ -1,0 +1,39 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "CAMERA_USAGE_DESCRIPTION": "Taking Pictures for Secret Messages",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "ca.edumedia.trop0008.SecrtMsgr"
+        }
+    }
+}

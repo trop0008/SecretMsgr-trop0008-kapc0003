@@ -24,12 +24,8 @@
         <param name="onload" value="true" />
     </feature>
     <name>SecrtMsgr-trop0008-kapc0003</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
+    <description> A sample Apache Cordova application that responds to the deviceready event. </description>
+    <author email="trop0008@algonquinlive.com" href="http://trop0008.edumedia.ca"> Alison Kapcala and Marjan Tropper </author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -40,4 +36,11 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="SplashScreenDelay" value="500" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="FadeSplashScreenDuration" value="350" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
 </widget>

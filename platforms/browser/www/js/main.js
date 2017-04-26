@@ -59,7 +59,53 @@ var app = {
         //let sender_name = "";
         document.getElementById("btnLogin").addEventListener("click", loginRegisterFunc);
         document.getElementById("btnRegister").addEventListener("click", loginRegisterFunc);
+        document.getElementById("composeMsg").addEventListener("click", fetchusersFunc);
+        document.getElementById("TakePicMessage").addEventListener("click", takePicFunc);
         console.log("we are in business");
+        
+        function takePicFunc(ev) {
+            ev.preventDefault;
+            navigator.camera.getPicture(onSuccess, onFail, {
+                quality: 50
+                , destinationType: Camera.DestinationType.FILE_URI
+            });
+
+            function onSuccess(imageURI) {
+                
+                let image = document.createElement('img');
+                image.src = imageURI;
+                
+                
+                
+            let c = document.getElementById("newMsgCanvas");
+            let ctx = c.getContext('2d');
+            
+            image.crossOrigin = "Anonymous";
+            
+            image.addEventListener('load', function (ev) {
+                //image has been loaded
+                var w = img1.width;
+                var h = img1.height;
+                c.style.width = w + 'px';
+                c.style.height = h + 'px';
+                c.width = w;
+                c.height = h;
+                ctx.drawImage(img1, 0, 0);
+            });
+                
+                
+                
+                document.getElementById("TakePicMessage").style.display="none";
+                document.getElementById("saveAddReview").style.display="block";
+                
+                
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+      
+        } 
 
         function loginRegisterFunc(ev) {
             ev.preventDefault;
@@ -143,6 +189,34 @@ var app = {
                 return response.json();
             }).then(function (jsonData) {
                 console.log(jsonData);
+                
+                if(jsonData.code==0){
+                    console.log(jsonData.users);
+                    let select = document.getElementById("recipientList");
+                    select.innerHTML="";
+                     jsonData.users.forEach(function (user, index) {
+                        let option = document.createElement("option");
+                         option.value=user.user_id;
+                         option.innerHTML=user.user_name;
+                         select.appendChild(option);
+                    });
+                    
+                    
+
+
+
+
+                    
+                }
+  /*
+  <option value="value2" selected>Value 2</option>
+  */
+                
+                
+                document.getElementById("composeModal").classList.add("active");
+                            document.getElementById("msgListModal").classList.remove("active");
+                 document.getElementById("msgDisplayModal").classList.remove("active");
+                
                 return jsonData;
             }).catch(function (err) {
                 console.log("Error: " + err.message);

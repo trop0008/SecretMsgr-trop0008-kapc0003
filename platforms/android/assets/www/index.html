@@ -1,49 +1,120 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com http://griffis.edumedia.ca https://griffis.edumedia.ca http://trop0008.edumedia.ca  'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content: trop0008.edumedia.ca https://griffis.edumedia.ca griffis.edumedia.ca  placeholdit.imgix.net placehold.it ;" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="css/ratchet.css" rel="stylesheet" />
+    <!--<link href="css/ratchet-theme-ios.css" rel="stylesheet" />-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- include the compiled Ratchet JS -->
+    <!--<script src="js/ratchet.min.js"></script>-->
+    <title>Secret Messenger</title>
+</head>
+
+<body>
+    <header class="bar bar-nav">
+        <h1 class="title">Messenger</h1> </header>
+    <div class="content" id="loginDiv">
+        <div class="content-padded">
+            <form>
+                <input type="text" id="user_name" placeholder="Username">
+                <input type="email" id="email" placeholder="Email"> </form>
+            <button class="btn btn-primary btn-block" id="btnLogin">LOGIN</button>
+            <button class="btn btn-positive btn-block" id="btnRegister">REGISTER</button>
+            <p class="content-padded errormessage" id="loginError"></p>
+        </div>
+    </div>
+    <div id="msgListModal" class="modal">
+        <header class="bar bar-nav">
+            <!-- <a href="#reviewModal" class="icon icon-close pull-right" id="closeAddReview"></a> <span class="icon icon-compose pull-right" id="composeMsg">Compose</span>-->
+            <a  id="composeMsg" class="btn btn-link btn-nav pull-right" >Compose<span class="icon icon-compose" id="composeMsg"></span></a>
+            <h1 class="title" id="headertitle">Messenger </h1> </header>
+        <div class="content" id="msgListDiv">
+            <h4 class="pageheader" id="msghead">List of Messeges </h4>
+            <!-- read through message lists -->
+            <ul class="table-view" id="msgListUl"> </ul>
+        </div>
+    </div>
+    <div id="msgDisplayModal" class="modal">
+        <header class="bar bar-nav"> <a id="backBtn" class="btn btn-link btn-nav pull-left" >Back</a> <a  id="replyMsg" class="btn btn-link btn-nav pull-right" >Reply<span class="icon icon-compose" id="composeMsg"></span></a>
+            <h1 class="title">Messenger </h1> </header>
+        <div class="content" id="msgDisplayDiv">
+            <div class="content-padded">
+                <h5 class="pageheader" id="msgDisplayhead"> </h5>
+                <div class='card' id='loadedimage'>
+                    <!--<img id="msgImage" src="" crossorigin="anonymous">-->
+                    <canvas id="msgCanvas" width="300" height="300"></canvas>
+                </div>
+                <p class="content-padded">Message:</p>
+                <p class="content-padded" id="messageContent"></p>
+                <button id="msgDeleteBtn" class="btn btn-negative btn-block"> <span class="icon icon-close"></span> Delete Message </button>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+    </div>
+    
+    
+    <div id="composeModal" class="modal">
+        <header class="bar bar-nav">
+            <!-- <a href="#reviewModal" class="icon icon-close pull-right" id="closeAddReview"></a> --><span class="icon icon-compose pull-right" id="composeMsgoooo"></span>
+            <h1 class="title" id="headertitle">Messenger </h1> </header>
+        <div class="content">
+            <div class="content-padded">
+                <form class="input-group">
+                        
+                            <label>User:</label>
+                            <select id="recipientList">
+                    
+                            </select>
+                        
+                        <label>Message:</label>
+                        <textarea id="msgText" placeholder="Enter your message here" rows="3" maxlength="200"></textarea>
+                    </form>
+                <div class='card' id='cameraimage'>
+                    <!--<img id="msgImage" src="" crossorigin="anonymous">-->
+                    <canvas id="newMsgCanvas" width="300" height="300"></canvas>
+                </div>
+                <p class="content-padded">
+                    <button id="TakePicMessage" class="btn btn-positive btn-block"> <span class="icon icon-play"></span> Take Picture </button>
+                    <button id="cancelAddReview" class="btn btn-negative btn-block"> <span class="icon icon-close"></span> Cancel </button>
+                    <button id="SendMessageBtn" class="btn btn-primary btn-block"> <span class="icon icon-check"></span> Send Message </button>
+                </p>
+                <p class="content-padded errormessage" id="personError"> </p>
+            </div>
+        </div>
+    </div>
+    <div id="deleteModal" class="modal">
+        <header class="bar bar-nav">
+            <a href="#deleteModal" class="icon icon-close pull-right" id="closeRemoveReview"></a>
+            <h1 class="title" id="headertitle">Delete Review </h1> </header>
+        <div class="content">
+            <div class="content-padded">
+                <div class="card" id='itemImg'></div>
+                <h4 id="deleteItemName" class="deleteReview"></h4>
+                <div class="deleteReview">
+                    <div class="stars" id="deleteStar"> </div>
+                </div>
+                <p>
+                    <button class="btn btn-block" id="cancelDeleteReview"> <span class="icon icon-close"></span> Cancel
+                        <!-- dispatch click to the close button -->
+                    </button>
+                    <button class="btn btn-negative btn-block" id="saveDeleteReview"> <span class="icon icon-check"></span> Delete
+                        <!-- process the info then dispatch click to the close button -->
+                    </button>
+                </p>
+                <p class="content-padded errormessage" id="personError"> </p>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <!--<script src="js/moment-with-locales.js"></script>-->
+    <script src="js/bits-1.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
 </html>

@@ -37,7 +37,7 @@ Updated: April 25, 2017
 "use strict";
 var app = {
     initialize: function () {
-        try { // this is to enable testing in browser
+        try { // this is to enable testing in my browser
             document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
         }
         catch (e) {
@@ -57,8 +57,7 @@ var app = {
         let recipient_id="";
         let recipient_name="";
         let msg_id = "";
-        //let sender_id = "";
-        //let sender_name = "";
+        
         document.getElementById("btnLogin").addEventListener("click", loginRegisterFunc);
         document.getElementById("btnRegister").addEventListener("click", loginRegisterFunc);
         document.getElementById("composeMsg").addEventListener("click", fetchusersFunc);
@@ -66,9 +65,16 @@ var app = {
         document.getElementById("TakePicMessage").addEventListener("click", takePicFunc);
         document.getElementById("SendMessageBtn").addEventListener("click", SendMessageFunc);
         document.getElementById("msgDeleteBtn").addEventListener("click", deleteMsgFunc);
+        document.getElementById("cancelcomposeModal").addEventListener("click", cancelcomposeFunc);
+        document.getElementById("backBtn").addEventListener("click", cancelcomposeFunc);
+        document.getElementById("backcomposeBtn").addEventListener("click", cancelcomposeFunc);
+        
+        document.getElementById("TakePicMessage").style.display = "block";
+        document.getElementById("SendMessageBtn").style.display = "none";
+        document.getElementById("waitingpage").style.display = "none";
         
         
-        console.log("we are in business");
+        
         function replyMsgFunc(ev){
             ev.preventDefault;
             
@@ -128,20 +134,35 @@ var app = {
             }
         }
         
+        function resetVariables(){
+                message_id = "";
+                recipient_id="";
+                recipient_name="";
+                msg_id = "";
+            
+        }
+        
+        
+        
+        
+       function cancelcomposeFunc(){ 
+           hideModals();
+           fetchMessegesFunc();
+           resetVariables();
+       }
         
         function SendMessageFunc(){
            let c = document.getElementById("newMsgCanvas");
             let context = c.getContext('2d'); 
             
            recipient_id =document.getElementById("recipientList").value;
-               console.log(document.getElementById("recipientList").value);
-            console.log(document.getElementById("msgText").value.trim());
+              //console.log(document.getElementById("recipientList").value);
+           //console.log(document.getElementById("msgText").value.trim());
             
             let msgText = document.getElementById("msgText").value.trim();
-        
-        
-        
-        try {
+        if(msgText){
+            
+               try {
             
             c = BITS.setUserId( BITS.numberToBitArray( recipient_id ), c );
         
@@ -151,7 +172,7 @@ var app = {
             
         } catch( error ) {
             
-            console.log(error);
+           console.log(error);
             
         }
             
@@ -170,37 +191,32 @@ var app = {
                 , mode: 'cors'
                 , body: formData
             }).then(function (response) {
-                console.log(response);
+               //console.log(response);
                 return response.json();
             }).then(function (jsonData) {
-                console.log(jsonData);
+               //console.log(jsonData);
                hideModals();
-                 document.getElementById("msgText").value="";
+                 
                 context.clearRect(0,0,c.width,c.height);
                 fetchMessegesFunc();
                 return jsonData;
             }).catch(function () {
-                console.log('unable to fetch');
+               console.log('unable to fetch');
             });
-            
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                /*****************************/
-            })       
+               
+            }) ;      
         
             
-           // context.clearRect(0,0,c.width,c.height);
+           
             
+        } else {
+            document.getElementById("messageError").innerHTML="Please enter a message!";
         }
+        
+        
+     
+            
+        }/***************** end of send function********************/
 
         function dataURLToBlob(dataURL) {
             return Promise.resolve().then(function () {
@@ -227,7 +243,7 @@ var app = {
         function loginRegisterFunc(ev) {
             ev.preventDefault;
             email = document.getElementById("email").value;
-            console.log(email);
+           //console.log(email);
             user_name = document.getElementById("user_name").value;
             switch (ev.currentTarget.id) {
             case 'btnLogin':
@@ -242,7 +258,7 @@ var app = {
         }
 
         function fetchuserFunc() {
-            console.log(user_name);
+           //console.log(user_name);
             let formData = new FormData();
             formData.append("user_name", user_name);
             formData.append("email", email);
@@ -252,18 +268,26 @@ var app = {
                 , mode: 'cors'
                 , body: formData
             }).then(function (response) {
-                console.log(response);
+               //console.log(response);
                 return response.json();
             }).then(function (jsonData) {
-                console.log(jsonData);
+               //console.log(jsonData);
                 user_guid = jsonData.user_guid;
                 user_id = jsonData.user_id;
-                console.log(user_guid);
-                console.log(user_id);
-                fetchMessegesFunc();
+               //console.log(user_guid);
+               //console.log(user_id);
+                if(jsonData.code==0){
+                    document.getElementById("loginform").style.display="none";
+                    document.getElementById("waitingpage").style.display = "block";
+                    fetchMessegesFunc();
+                }else{
+                    
+                    document.getElementById("loginError").innerHTML=jsonData.message;
+                }
+                
                 return jsonData;
             }).catch(function () {
-                console.log('unable to fetch');
+               console.log('unable to fetch');
             });
         }
 
@@ -278,19 +302,22 @@ var app = {
                 , mode: 'cors'
                 , body: formData
             }).then(function (response) {
-                console.log(response);
+               //console.log(response);
                 return response.json();
             }).then(function (jsonData) {
-                console.log(jsonData);
+               //console.log(jsonData);
                 messageListFunc(jsonData);
                 document.getElementById("msgListModal").classList.add("active");
                 
                 return jsonData;
             }).catch(function (err) {
-                console.log("Error: " + err.message);
+               console.log("Error: " + err.message);
             });
         }
         function hideModals(){
+             document.getElementById("messageError").innerHTML="";
+            document.getElementById("loginError").innerHTML="";
+            document.getElementById("msgText").value="";
             document.getElementById("cameraimage").style.display="none";
                      document.getElementById("TakePicMessage").style.display = "block";
                 document.getElementById("SendMessageBtn").style.display = "none";
@@ -312,12 +339,12 @@ var app = {
                 , mode: 'cors'
                 , body: formData
             }).then(function (response) {
-                console.log(response);
+                //console.log(response);
                 return response.json();
             }).then(function (jsonData) {
-                console.log(jsonData);
+               //console.log(jsonData);
                 if (jsonData.code == 0) {
-                    console.log(jsonData.users);
+                   //console.log(jsonData.users);
                     let select = document.getElementById("recipientList");
                     select.innerHTML = "";
                     document.getElementById("cameraimage").style.display="none";
@@ -334,7 +361,7 @@ var app = {
                 document.getElementById("msgDisplayModal").classList.remove("active");
                 return jsonData;
             }).catch(function (err) {
-                console.log("Error: " + err.message);
+               console.log("Error: " + err.message);
             });
         }
 
@@ -350,17 +377,17 @@ var app = {
                 , mode: 'cors'
                 , body: formData
             }).then(function (response) {
-                console.log(response);
+               //console.log(response);
                 return response.json();
             }).then(function (jsonData) {
-                console.log(jsonData);
+               //console.log(jsonData);
                 message_id="";
                 document.getElementById("msgDisplayModal").classList.remove("active");
                 
                 fetchMessegesFunc();
                 return jsonData;
             }).catch(function (err) {
-                console.log("Error: " + err.message);
+               //console.log("Error: " + err.message);
             });
         }
 
@@ -376,14 +403,14 @@ var app = {
                 , mode: 'cors'
                 , body: formData
             }).then(function (response) {
-                console.log(response);
+               //console.log(response);
                 return response.json();
             }).then(function (jsonData) {
-                console.log(jsonData);
+               //console.log(jsonData);
                 showMessage(jsonData);
                 return jsonData;
             }).catch(function (err) {
-                console.log("Error: " + err.message);
+               console.log("Error: " + err.message);
             });
         }
 
@@ -408,11 +435,11 @@ var app = {
         }
 
         function messageListFunc(msgList) {
-            console.log(msgList.messages.length);
+           //console.log(msgList.messages.length);
             if (msgList.messages) {
                 if (msgList.messages.length > 0) {
-                    console.log(msgList.messages.length);
-                    console.log(msgList.messages);
+                   //console.log(msgList.messages.length);
+                   //console.log(msgList.messages);
                     let ul = document.getElementById('msgListUl');
                     ul.innerHTML = "";
                     msgList.messages.forEach(function (messageItem, index) {
@@ -428,9 +455,9 @@ var app = {
 
                         function viewMessage(ev) {
                             ev.preventDefault;
-                            console.log(messageItem.msg_id);
-                            console.log(messageItem.sender_id);
-                            console.log(messageItem.user_name);
+                           //console.log(messageItem.msg_id);
+                           //console.log(messageItem.sender_id);
+                           //console.log(messageItem.user_name);
                             message_id = messageItem.msg_id;
                             recipient_id=messageItem.sender_id;
                             recipient_name=messageItem.user_name;

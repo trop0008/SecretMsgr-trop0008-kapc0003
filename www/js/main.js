@@ -68,6 +68,8 @@ var app = {
         document.getElementById("cancelcomposeModal").addEventListener("click", cancelcomposeFunc);
         document.getElementById("backBtn").addEventListener("click", cancelcomposeFunc);
         document.getElementById("backcomposeBtn").addEventListener("click", cancelcomposeFunc);
+        document.getElementById("refreshMsgList").addEventListener("click", fetchMessagesFunc);
+        
         
         document.getElementById("TakePicMessage").style.display = "block";
         document.getElementById("SendMessageBtn").style.display = "none";
@@ -100,7 +102,7 @@ var app = {
                 quality: 50
                 , targetWidth: 300
                 , targetHeight: 300
-                
+                , allowEdit: true
                 , correctOrientation: true
                 , destinationType: Camera.DestinationType.FILE_URI
             });
@@ -113,8 +115,10 @@ var app = {
                 image.crossOrigin = "Anonymous";
                 image.addEventListener('load', function (ev) {
                     //image has been loaded
-                    var w = image.width;
-                    var h = image.height;
+                    var w = 300;
+                    var h = 300;
+                    //var w = image.width;
+                    //var h = image.height;
                     c.style.width = w + 'px';
                     c.style.height = h + 'px';
                     c.width = w;
@@ -146,8 +150,14 @@ var app = {
         
         
        function cancelcomposeFunc(){ 
+           
+           let c = document.getElementById("msgCanvas");
+            let context = c.getContext('2d'); 
+             context.clearRect(0,0,c.width,c.height);
+           
+           
            hideModals();
-           fetchMessegesFunc();
+           fetchMessagesFunc();
            resetVariables();
        }
         
@@ -198,7 +208,7 @@ var app = {
                hideModals();
                  
                 context.clearRect(0,0,c.width,c.height);
-                fetchMessegesFunc();
+                fetchMessagesFunc();
                 return jsonData;
             }).catch(function () {
                console.log('unable to fetch');
@@ -279,7 +289,7 @@ var app = {
                 if(jsonData.code==0){
                     document.getElementById("loginform").style.display="none";
                     document.getElementById("waitingpage").style.display = "block";
-                    fetchMessegesFunc();
+                    fetchMessagesFunc();
                 }else{
                     
                     document.getElementById("loginError").innerHTML=jsonData.message;
@@ -291,7 +301,7 @@ var app = {
             });
         }
 
-        function fetchMessegesFunc() {
+        function fetchMessagesFunc() {
             let formData = new FormData();
             formData.append("user_guid", user_guid);
             formData.append("user_id", user_id);
@@ -384,7 +394,7 @@ var app = {
                 message_id="";
                 document.getElementById("msgDisplayModal").classList.remove("active");
                 
-                fetchMessegesFunc();
+                fetchMessagesFunc();
                 return jsonData;
             }).catch(function (err) {
                //console.log("Error: " + err.message);

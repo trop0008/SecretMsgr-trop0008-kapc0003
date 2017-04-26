@@ -86,11 +86,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		auw2VOBk8tIBTS2hg0w7DBFwwc8=
+		J8iM3nedD1frj7fs0ULxAtD9PeE=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		YLHCYGYYXt0HDuh9tera2hQn8oU=
+		DU7B/bO/KJatnzKmACNtR8uvFXw=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		Arz357YEpd0QfI1qLNuKAcdNrZY=
+		Wj/44H4zfJKmgmn9yBBVXMekad0=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -106,7 +106,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		enzyKVVSJYmgcUAjkrBgadzTz6g=
+		KdSqzIl2YzcUkdyLYUzqIIXipxk=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -146,7 +146,7 @@
 		</data>
 		<key>www/css/main.css</key>
 		<data>
-		lfWs/i9YnxaFDa/d+pW4ML3GC+I=
+		Wtqx4DOziuXVi3j+BywUBZokaYA=
 		</data>
 		<key>www/css/ratchet.css</key>
 		<data>
@@ -178,7 +178,7 @@
 		</data>
 		<key>www/index.html</key>
 		<data>
-		EHttnKm0zh7AuqWn+a9kHWX4KBI=
+		JEd4pLY9Yo/7G/G55+ahx6NBCzA=
 		</data>
 		<key>www/js/bits-1.js</key>
 		<data>
@@ -186,7 +186,7 @@
 		</data>
 		<key>www/js/main.js</key>
 		<data>
-		x8JhNNwquTvnBiiFBAa3zBMJMqM=
+		AhL6Yw32VGRUSHYhfvudkB0hgoQ=
 		</data>
 		<key>www/js/ratchet.min.js</key>
 		<data>
@@ -547,22 +547,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			auw2VOBk8tIBTS2hg0w7DBFwwc8=
+			J8iM3nedD1frj7fs0ULxAtD9PeE=
 			</data>
 			<key>hash2</key>
 			<data>
-			qKiIQU9h1XZ/QEkJOALni9CoDjoPNRrI9TKcdXVAqpQ=
+			CpAfffd+OWd+XEGzo4VghlJ+rQm/+INpjDNHZvVn1PM=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YLHCYGYYXt0HDuh9tera2hQn8oU=
+			DU7B/bO/KJatnzKmACNtR8uvFXw=
 			</data>
 			<key>hash2</key>
 			<data>
-			LXeDKvBnz8W/8yZ3DcHpLV+NJeRM1kxrcgRbJpKMg/w=
+			IoVPjvLAcTivARfbFKLslnqCZSCsGtIj90ti52yW+vM=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -580,22 +580,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Arz357YEpd0QfI1qLNuKAcdNrZY=
+			Wj/44H4zfJKmgmn9yBBVXMekad0=
 			</data>
 			<key>hash2</key>
 			<data>
-			HGKH/jD/nFFYWWdOJOKz3W5cwTvEDzR2Yoq0XUABNeM=
+			VIPMuVCYiKtC36poyQWHRW8DLfGYsEjKlRpE4Q4XfpY=
 			</data>
 		</dict>
 		<key>MainViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			enzyKVVSJYmgcUAjkrBgadzTz6g=
+			KdSqzIl2YzcUkdyLYUzqIIXipxk=
 			</data>
 			<key>hash2</key>
 			<data>
-			QrJnVOM8J0CJ199kz4So7CgkDTqyR2IAJ8g5cVzpfa0=
+			m3pLYdyR2RQXIMBpjO2lqUJqzQCEVC3I7v49L8P8hRI=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -690,11 +690,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			lfWs/i9YnxaFDa/d+pW4ML3GC+I=
+			Wtqx4DOziuXVi3j+BywUBZokaYA=
 			</data>
 			<key>hash2</key>
 			<data>
-			T37rflAt0HOdielXo1eQrk2p9eMykmAWGER9ZKDlTiE=
+			MYHbHYx8chx+JU3nn9LoVVXqH/sTKZMZmd/mtSXDrHE=
 			</data>
 		</dict>
 		<key>www/css/ratchet.css</key>
@@ -778,11 +778,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			EHttnKm0zh7AuqWn+a9kHWX4KBI=
+			JEd4pLY9Yo/7G/G55+ahx6NBCzA=
 			</data>
 			<key>hash2</key>
 			<data>
-			DLmpreWzP7q6fRP7Z/b6HgCTFO83k2iM4OOm3R0ezao=
+			Blp+MZZ9/7TmhEi42Du0iU5IDoDDQGZ2M3vqLKDobKw=
 			</data>
 		</dict>
 		<key>www/js/bits-1.js</key>
@@ -800,11 +800,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			x8JhNNwquTvnBiiFBAa3zBMJMqM=
+			AhL6Yw32VGRUSHYhfvudkB0hgoQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			W1gC8ngEuTG1fWxfl3eQyHvIOcq5DIgRBFKKWeRqsXo=
+			Pn7+GOomEQIYKUfFEEba+o08R7AdgyHI+il2c/RLCgI=
 			</data>
 		</dict>
 		<key>www/js/ratchet.min.js</key>

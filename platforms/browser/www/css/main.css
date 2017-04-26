@@ -1,0 +1,41 @@
+.bar{
+    padding-top:  10px;
+    height: 55px;
+    
+}
+.content{
+    
+    margin-top: 10px;
+}
+h1,h2,h3,h4,h5,h6{
+    
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.errormessage{
+    color:red;
+    font-size: 0.8rem;
+}
+
+.card {
+    margin: 0;
+    padding: 1rem;
+    overflow: hidden;
+    background-color: white;
+   border: 1px solid #fff;
+    border-radius: 0px;
+    
+    vertical-align: middle;
+    text-align: center;
+    
+}
+
+.card img {
+    display: block;
+    clear: both;
+    margin: auto auto;
+    border: 5px solid #ddd;
+    border-radius: 20px;
+    height: 50vh;
+}
